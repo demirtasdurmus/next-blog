@@ -6,50 +6,14 @@ import Link from 'next/link'
 import Date from '../components/date'
 
 
-// for static page generation at build time
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
-  //console.log("first", allPostsData)
-  return {
-    props: {
-      allPostsData
-    }
-  }
-};
-
-// for ssr to fetch data on each request
-// export async function getServerSideProps(context) {
-//   return {
-//     props: {
-//       // props for your component
-//     }
-//   }
-// }
-
-// static page generation at build time & fetch data after page load
-// import useSWR from 'swr'
-
-// function Profile() {
-//   const { data, error } = useSWR('/api/user', fetch)
-
-//   if (error) return <div>failed to load</div>
-//   if (!data) return <div>loading...</div>
-//   return <div>hello {data.name}!</div>
-// }
-
 export default function Home({ allPostsData }) {
-  console.log("second", allPostsData)
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
+        <p>Durmuş Demirtaş</p>
       </section>
 
       {/* Add this <section> tag below the existing <section> tag */}
@@ -72,3 +36,33 @@ export default function Home({ allPostsData }) {
     </Layout>
   )
 };
+
+// ! for static page generation at build time
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
+  return {
+    props: {
+      allPostsData
+    }
+  }
+};
+
+// ! for ssr to fetch data on each request
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {
+//       props for your component
+//     }
+//   }
+// }
+
+// ! static page generation at build time & fetch data after page load
+// import useSWR from 'swr'
+
+// function Profile() {
+//   const { data, error } = useSWR('/api/user', fetch)
+
+//   if (error) return <div>failed to load</div>
+//   if (!data) return <div>loading...</div>
+//   return <div>hello {data.name}!</div>
+// }
